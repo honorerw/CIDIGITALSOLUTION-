@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>C&I DIGITAL SOLUTION</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* ── Firebase status feedback styles ── */
+        .btn-sending {
+            opacity: 0.75;
+            cursor: not-allowed;
+        }
+
+        /* Success toast */
+        #fb-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            min-width: 300px;
+            display: none;
+            animation: slideIn 0.4s ease;
+        }
+
+        #fb-toast.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Inline field error */
+        .field-error {
+            font-size: 0.8rem;
+            color: #dc3545;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .field-error.visible {
+            display: block;
+        }
+
+        /* Spinner inside button */
+        .btn-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════════
+         TOPBAR
+    ══════════════════════════════════════════════ -->
+    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+        <div class="row gx-0">
+            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center" style="height:45px;">
+                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>WQ23+PMF, 3, Muhanga
+                        city</small>
+                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+250786950986</small>
+                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>cidsolution@gmail.com</small>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <div class="d-inline-flex align-items-center" style="height:45px;">
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+                            class="fab fa-twitter fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+                            class="fab fa-facebook-f fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+                            class="fab fa-linkedin-in fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+                            class="fab fa-instagram fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href="#"><i
+                            class="fab fa-youtube fw-normal"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         NAVBAR
+    ══════════════════════════════════════════════ -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>C&IDS ltd</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom:90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">Contact</h1>
+                    <a href="index.html" class="h5 text-white">Home</a>
+                    <i class="far fa-circle text-white px-2"></i>
+                    <a href="contact.html" class="h5 text-white">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         CONTACT SECTION
+    ══════════════════════════════════════════════ -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width:600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Contact Us</h5>
+                <h1 class="mb-0">If You Have Any Query, Feel Free To Contact Us</h1>
+            </div>
+
+            <!-- Info cards -->
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width:60px;height:60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Call to ask any question</h5>
+                            <h4 class="text-primary mb-0">+250786950986</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width:60px;height:60px;">
+                            <i class="fa fa-envelope-open text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Email to get free quote</h5>
+                            <h4 class="text-primary mb-0">cidsolution@gmail.com</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width:60px;height:60px;">
+                            <i class="fa fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Visit our office</h5>
+                            <h4 class="text-primary mb-0">WQ23+PMF, 3, Muhanga city</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form + Map -->
+            <div class="row g-5">
+
+                <!-- ────────────────────────────────────
+                     CONTACT FORM  (Firebase connected)
+                ──────────────────────────────────── -->
+                <div class="col-lg-6">
+
+                    <!-- ✅ Success message (hidden until form submitted) -->
+                    <div id="successMessage">
+                      <div class="success-icon">
+                        <i class="bi bi-check-lg"></i>
+                      </div>
+                      <h3 class="success-title">Message Sent!</h3>
+                      <p class="success-sub">Thank you for reaching out.<br>We'll get back to you as soon as possible.</p>
+                      <button class="btn btn-outline-primary px-4 py-2" onclick="resetForm()">
+                        <i class="bi bi-arrow-left me-2"></i>Send Another Message
+                      </button>
+                    </div>
+                  
+                    <!-- 📋 Contact form -->
+                    <form id="contactForm" novalidate>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <input id="inputName" type="text" class="form-control border-0 bg-light px-4"
+                            placeholder="Your Name" style="height:55px;" maxlength="100">
+                          <div class="field-error" id="errName">Please enter your name.</div>
+                        </div>
+                        <div class="col-md-6">
+                          <input id="inputEmail" type="email" class="form-control border-0 bg-light px-4"
+                            placeholder="Your Email" style="height:55px;" maxlength="150">
+                          <div class="field-error" id="errEmail">Please enter a valid email.</div>
+                        </div>
+                        <div class="col-12">
+                          <input id="inputSubject" type="text" class="form-control border-0 bg-light px-4"
+                            placeholder="Subject" style="height:55px;" maxlength="200">
+                          <div class="field-error" id="errSubject">Please enter a subject.</div>
+                        </div>
+                        <div class="col-12">
+                          <textarea id="inputMessage" class="form-control border-0 bg-light px-4 py-3" rows="4"
+                            placeholder="Message" maxlength="2000"></textarea>
+                          <div class="field-error" id="errMessage">Please enter your message.</div>
+                        </div>
+                        <div class="col-12">
+                          <button id="submitBtn" class="btn btn-primary w-100 py-3" type="submit">
+                            Send Message
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  
+                  </div>
+
+                            
+  
+
+                <!-- Map -->
+                <div class="col-lg-6">
+                    <iframe class="position-relative rounded w-100 h-100"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.394024935648!2d29.756082!3d-2.084356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca6f1b6d6b1c5%3A0x9a2e5a1b2c3d4e5f!2sMuhanga%2C%20Rwanda!5e0!3m2!1sen!2srw!4v1620000000000"
+                        frameborder="0" style="min-height:350px;border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         TOAST NOTIFICATION
+    ══════════════════════════════════════════════ -->
+    <div id="fb-toast">
+        <div id="fb-toast-inner" class="alert alert-success alert-dismissible shadow-lg mb-0" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <strong id="fb-toast-title">Message sent!</strong>
+            <span id="fb-toast-body"> We'll get back to you soon.</span>
+            <button type="button" class="btn-close" onclick="hideToast()"></button>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════════ -->
+    <div class="container-fluid bg-dark text-light mt-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <div
+                        class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                        <a href="index.html" class="navbar-brand">
+                            <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>C&IDS LTD</h1>
+                        </a>
+                        <p class="mt-3 mb-4">Your Gateway to Opportunities — Educational consulting, Scholarship
+                            applications, Online Visa applications and International opportunities.</p>
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
+                                <button class="btn btn-dark">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Get In Touch</h3>
+                            </div>
+                            <div class="d-flex mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0">WQ23+PMF, 3, Muhanga city</p>
+                            </div>
+                            <div class="d-flex mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">cidsolution@gmail.com</p>
+                            </div>
+                            <div class="d-flex mb-2"><i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">+250786950986</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Quick Links</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                                <a class="text-light mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                                <a class="text-light mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                                <a class="text-light" href="#"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-white" style="background:#061429;">
+        <div class="container text-center">
+            <div class="row justify-content-end">
+                <div class="col-lg-8 col-md-6">
+                    <div class="d-flex align-items-center justify-content-center" style="height:75px;">
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">C&IDS</a>. All Rights
+                            Reserved. Designed by <a class="text-white border-bottom" href="#">KWIZERA JABO BRUCE</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ══════════════════════════════════════════════
+         🔥 FIREBASE SDK  (v9 modular via CDN)
+    ══════════════════════════════════════════════ -->
+    <script type="module">
+        // ─── 1. IMPORT Firebase tools ───────────────────────────────────────────
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp }
+            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        // ─── 2. YOUR FIREBASE CONFIG ────────────────────────────────────────────
+        //  ⚠️  Replace every value below with the config from YOUR Firebase project
+        //      Firebase Console → Project Settings → Your Apps → SDK setup & config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDrrNVm8RR-MxWY5YAvtMPRxnMGC08sd0I",
+            authDomain: "honore-rw.firebaseapp.com",
+            projectId: "honore-rw",
+            storageBucket: "honore-rw.firebasestorage.app",
+            messagingSenderId: "655758947853",
+            appId: "1:655758947853:web:6a9ac558d27d478edb4744",
+            measurementId: "G-LH6R8X5K8F"
+        };
+
+        // ─── 3. Initialize Firebase ─────────────────────────────────────────────
+        const app = initializeApp(firebaseConfig);
+
+        // ─── 4. Get Firestore instance ──────────────────────────────────────────
+        const db = getFirestore(app);
+
+        // ─── 5. Helper: show / hide toast notification ──────────────────────────
+        window.hideToast = function () {
+            document.getElementById("fb-toast").classList.remove("show");
+        };
+
+        function showToast(success, message) {
+            const toast = document.getElementById("fb-toast");
+            const inner = document.getElementById("fb-toast-inner");
+            const titleEl = document.getElementById("fb-toast-title");
+            const bodyEl = document.getElementById("fb-toast-body");
+
+            inner.className = `alert alert-${success ? "success" : "danger"} alert-dismissible shadow-lg mb-0`;
+            titleEl.textContent = success ? "Message sent! ✅" : "Error ❌";
+            bodyEl.textContent = message;
+
+            toast.classList.add("show");
+            // Auto-hide after 5 seconds
+            setTimeout(() => toast.classList.remove("show"), 5000);
+        }
+
+        // ─── 6. Simple form validator ────────────────────────────────────────────
+        function validate(name, email, subject, message) {
+            let valid = true;
+
+            const showErr = (id, show) => {
+                document.getElementById(id).classList.toggle("visible", show);
+            };
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            showErr("errName", !name.trim());
+            showErr("errEmail", !emailRegex.test(email.trim()));
+            showErr("errSubject", !subject.trim());
+            showErr("errMessage", !message.trim());
+
+            if (!name.trim() || !emailRegex.test(email.trim()) || !subject.trim() || !message.trim()) {
+                valid = false;
+            }
+            return valid;
+        }
+
+        // ─── 7. FORM SUBMIT handler ──────────────────────────────────────────────
+        document.getElementById("contactForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("inputName").value;
+            const email = document.getElementById("inputEmail").value;
+            const subject = document.getElementById("inputSubject").value;
+            const message = document.getElementById("inputMessage").value;
+
+            // Validate fields first
+            if (!validate(name, email, subject, message)) return;
+
+            // Show loading state on button
+            const btn = document.getElementById("submitBtn");
+            btn.disabled = true;
+            btn.classList.add("btn-sending");
+            btn.innerHTML = `<span class="btn-spinner"></span>Sending...`;
+
+            try {
+                // ── 8. INSERT the document into Firestore ──────────────────────
+                //       Collection name: "contacts"
+                //       Each form submission = one document with auto-generated ID
+                const docRef = await addDoc(collection(db, "contacts"), {
+                    name: name.trim(),
+                    email: email.trim(),
+                    subject: subject.trim(),
+                    message: message.trim(),
+                    createdAt: serverTimestamp()   // server-side timestamp
+                });
+
+                console.log("✅ Document written with ID:", docRef.id);
+
+                // Reset form fields
+                document.getElementById("contactForm").reset();
+
+                // Show success feedback
+                showToast(true, "We received your message and will get back to you soon.");
+
+            } catch (error) {
+                console.error("❌ Firebase error:", error);
+                showToast(false, "Something went wrong. Please try again.");
+            } finally {
+                // Restore button
+                btn.disabled = false;
+                btn.classList.remove("btn-sending");
+                btn.innerHTML = "Send Message";
+            }
+        });
+        // Add this alongside your hideToast function:
+window.resetForm = function () {
+  document.getElementById("successMessage").classList.remove("show");
+  document.getElementById("contactForm").style.display = "block";
+};
+
+// In your try block, replace showToast(...) with:
+document.getElementById("contactForm").style.display = "none";
+document.getElementById("successMessage").classList.add("show");
+
+    </script>
+
+</body>
+
+</html>
